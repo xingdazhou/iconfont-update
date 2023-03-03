@@ -1,0 +1,27 @@
+{
+    "name": "iconfont-update",
+    "version": "1.0.0",
+    "description": "iconfont图标库更新",
+    "main": "index.js",
+    "scripts": {
+        "dev": "node ./bin/cli.js",
+        "test": "jest"
+    },
+    "author": "zhouxd",
+    "license": "ISC",
+    "bin": {
+        "iconfont": "./bin/cli.js"
+    },
+    "keywords": [
+        "icon",
+        "iconfont",
+        "iconfont-update",
+        "update"
+    ],
+    "dependencies": {
+        "commander": "^10.0.0",
+        "compressing": "^1.8.0",
+        "ora": "^5.0.0",
+        "puppeteer": "^10.0.0"
+    }
+}
