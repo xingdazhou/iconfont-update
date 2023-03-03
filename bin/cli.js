@@ -11,6 +11,12 @@ const program = require("commander");
 
 // The fs.promises API is experimental  装了最新包，但是node不是最高版本，单独运行对应js文件找到报错的是导入那个模块引起的
 
+// 配置iconfont -V指令显示
+program
+  .version(`iconfont ${require('../package').version}`)
+  .usage('<command> [options]')
+
+
 // 初始化用户信息
 program
     .command("init")
