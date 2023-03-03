@@ -6,14 +6,18 @@ const program = require("commander");
 // 查看说有软连接 npm ls --global --depth 0
 // 或者直接执行 node ./bin/cli.js init phone password
 
+// 修改iconfont init 为用户交互
+// https://blog.csdn.net/qq_34086980/article/details/113624914
+
+// The fs.promises API is experimental  装了最新包，但是node不是最高版本，单独运行对应js文件找到报错的是导入那个模块引起的
+
 // 初始化用户信息
 program
     .command("init")
     .alias("i")
     .description("初始化配置文件")
-    .arguments("<phoneNumber> <password>")
-    .action((phoneNumber, password) => {
-        require("../directiveFun/init.js")(phoneNumber, password);
+    .action(() => {
+        require("../directiveFun/init.js")();
     });
 
 // 查看参与项目图标库列表

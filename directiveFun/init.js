@@ -4,13 +4,17 @@
  * @Author: zhouxd
  * @Date: 2023-03-02 09:24:03
  * @LastEditors: zhouxd
- * @LastEditTime: 2023-03-03 13:35:50
+ * @LastEditTime: 2023-03-04 03:10:29
  */
 const chalk = require("chalk");
+const path = require("path");
 const createBrowser = require("../utils/createBrowser");
-const writeConfig = require('../utils/writeConfig')
-module.exports = async (phoneNumber, password) => {
+const writeConfig = require("../utils/writeConfig");
+const getAllInput = require("../utils/getUserInput");
+module.exports = async () => {
+    const { phoneNumber, password, updatePath } = await getAllInput();
     const { spinner, browser, page } = await createBrowser();
+    console.log();
     spinner.start(chalk.blue("查询参与项目的图标库信息"));
 
     const iconfontLoginUrl = "https://www.iconfont.cn/login";
@@ -59,20 +63,29 @@ module.exports = async (phoneNumber, password) => {
             name: item.name,
             phoneNumber,
             password,
-            fileAbsolutePath: "",
-            previewLocalPath: "",
-            previewRemotePath: "",
+            fileAbsolutePath: path.join(__dirname, updatePath),
+            previewLocalPath: path.join(
+                __dirname,
+                updatePath + "/demo_index.html"
+            ),
+            previewRemotePath:
+                "https://www.iconfont.cn/manage/index?spm=a313x.7781069.1998910419.20&manage_type=myprojects&projectId=" +
+                item.id,
         };
     });
     spinner.succeed(chalk.green("查询参与项目的图标库信息"));
-    const jsonData = JSON.stringify({ list })
-    writeConfig(jsonData)
-    console.log(chalk.yellowBright(`${chalk.bgBlue('初始化完毕')}\n使用${chalk.green("iconfont ls")}查看你的所有项目.\n${chalk.red("*")}更新前请在根目录下${chalk.blue(".iconfontrc")}配置好图标库下载路径\n(eg:fileAbsolutePath:"c:/users/download").`))
+    const jsonData = JSON.stringify({ list });
+    writeConfig(jsonData);
+    console.log(
+        chalk.yellowBright(
+            `${chalk.bgBlue("初始化完毕")} 使用${chalk.bgBlue(
+                "iconfont ls"
+            )}查看你的所有项目`
+        )
+    );
     await page.close();
     await browser.close();
 };
-
-
 
 // 参考的例子
 // const page = await browser.newPage()
