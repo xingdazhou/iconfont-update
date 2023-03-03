@@ -19,9 +19,10 @@
         "update"
     ],
     "dependencies": {
-        "commander": "^10.0.0",
-        "compressing": "^1.8.0",
+        "commander": "^9.0.0",
+        "compressing": "^1.5.0",
+        "inquirer": "^6.0.0",
         "ora": "^5.0.0",
-        "puppeteer": "^10.0.0"
+        "puppeteer": "^2.0.0"
     }
 }
