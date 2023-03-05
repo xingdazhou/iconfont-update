@@ -18,6 +18,11 @@
         "iconfont-update",
         "update"
     ],
+    "homePage": "https://github.com/xingdazhou/iconfont-update#readme",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/xingdazhou/iconfont-update.git"
+    },
     "dependencies": {
         "commander": "^9.0.0",
         "compressing": "^1.5.0",
