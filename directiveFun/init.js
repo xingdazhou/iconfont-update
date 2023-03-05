@@ -4,17 +4,16 @@
  * @Author: zhouxd
  * @Date: 2023-03-02 09:24:03
  * @LastEditors: zhouxd
- * @LastEditTime: 2023-03-04 03:10:29
+ * @LastEditTime: 2023-03-05 15:04:18
  */
 const chalk = require("chalk");
 const path = require("path");
 const createBrowser = require("../utils/createBrowser");
 const writeConfig = require("../utils/writeConfig");
-const getAllInput = require("../utils/getUserInput");
+const { getInitInput } = require("../utils/getUserInput");
 module.exports = async () => {
-    const { phoneNumber, password, updatePath } = await getAllInput();
+    const { phoneNumber, password, updatePath } = await getInitInput();
     const { spinner, browser, page } = await createBrowser();
-    console.log();
     spinner.start(chalk.blue("查询参与项目的图标库信息"));
 
     const iconfontLoginUrl = "https://www.iconfont.cn/login";
@@ -63,6 +62,7 @@ module.exports = async () => {
             name: item.name,
             phoneNumber,
             password,
+            updatePath: updatePath,
             fileAbsolutePath: path.join(__dirname, updatePath),
             previewLocalPath: path.join(
                 __dirname,

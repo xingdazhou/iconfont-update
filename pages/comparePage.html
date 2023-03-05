@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="X-Frame-Options" content="AllowAll">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title>本地与远程图标库对比</title>
+    <style>
+        .compare{
+            display: flex;
+        }
+        .compare div{
+            flex:1
+        }
+    </style>
+</head>
+
+<body>
+    <div class="compare">
+        <div id="local">
+            <iframe src="F:\front-fre\front-frs\public\static\newFont\demo_index.html" frameborder="0"></iframe>
+        </div>
+        <div id="remote">
+            <iframe src="https://www.iconfont.cn" frameborder="0"></iframe>
+        </div>
+    </div>
+    <!-- <script>
+        const url = location.href
+        const search = url.split('?')[1]
+        const queryArr = search.split("&")
+        const obj = {}
+        const arr = queryArr.map(item=>{
+            return {
+                name : item.split('=')[0],
+                url : item.split('=')[1]
+            }
+        })
+        arr.forEach(item=>{
+            document.querySelector("#" + item.name + ' iframe').setAttribute('src',item.url)
+        })
+    </script> -->
+</body>
+
+</html>

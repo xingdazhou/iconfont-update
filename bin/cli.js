@@ -40,9 +40,8 @@ program
     .command("update")
     .alias("u")
     .description("更新图标库")
-    .arguments("<projectId>")
-    .action((projectId) => {
-        require("../lib/index")(projectId);
+    .action(() => {
+        require("../lib/index")();
     });
 
 // 预览本地图标库
@@ -50,9 +49,8 @@ program
     .command("preview")
     .alias("p")
     .description("查看图标库的预览页面")
-    .arguments("<projectId>")
-    .action((projectId) => {
-        require("../lib/preview")(projectId);
+    .action(() => {
+        require("../directiveFun/preview")();
     });
 
 // 本地图标库与远程图标库对比
@@ -60,9 +58,8 @@ program
     .command("compare")
     .alias("c")
     .description("本地与远程对比预览")
-    .arguments("<projectId>")
-    .action((projectId) => {
-        require("../lib/preview")(projectId);
+    .action(() => {
+        require("../directiveFun/compare")();
     });
 
 program.parse(process.argv);

@@ -1,8 +1,13 @@
 const inquirer = require("inquirer");
+const readConfig = require("../utils/readConfig");
 let phoneNumber = "";
 let password = "";
 let updatePath = "";
-async function getAllInput() {
+
+let updateId = ''
+let previewPath = "";
+let comparePath = {};
+async function getInitInput() {
     phoneNumber = await inquirer.prompt([
         {
             name: "input",
@@ -26,9 +31,71 @@ async function getAllInput() {
         },
     ]);
     return {
-        phoneNumber : phoneNumber.input,
-        password : password.input,
-        updatePath: updatePath.input
-    }
+        phoneNumber: phoneNumber.input,
+        password: password.input,
+        updatePath: updatePath.input,
+    };
 }
-module.exports = getAllInput
+async function getUpdateInput() {
+    const list = JSON.parse(readConfig()).list;
+    const checkBoxList = list.map((item) => {
+        return {
+            name: item.name,
+            value: item.id,
+        };
+    });
+    updateId = await inquirer.prompt([
+        {
+            type: "checkbox",
+            name: "checkbox",
+            message: "请选择下列图标库进行预览",
+            choices: checkBoxList,
+        },
+    ]);
+    return updateId.checkbox[0];
+}
+async function getPreviewInput() {
+    const list = JSON.parse(readConfig()).list;
+    const checkBoxList = list.map((item) => {
+        return {
+            name: item.name,
+            value: item.previewLocalPath,
+        };
+    });
+    previewPath = await inquirer.prompt([
+        {
+            type: "checkbox",
+            name: "checkbox",
+            message: "请选择下列图标库进行更新",
+            choices: checkBoxList,
+        },
+    ]);
+    return previewPath.checkbox[0];
+}
+async function getCompareInput() {
+    const list = JSON.parse(readConfig()).list;
+    const checkBoxList = list.map((item) => {
+        return {
+            name: item.name,
+            value: {
+                local: item.previewLocalPath,
+                remote: item.previewRemotePath,
+            },
+        };
+    });
+    comparePath = await inquirer.prompt([
+        {
+            type: "checkbox",
+            name: "checkbox",
+            message: "请选择下列图标库与远程进行对比",
+            choices: checkBoxList,
+        },
+    ]);
+    return comparePath.checkbox[0];
+}
+module.exports = {
+    getInitInput,
+    getUpdateInput,
+    getPreviewInput,
+    getCompareInput,
+};
