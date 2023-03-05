@@ -1,10 +1,10 @@
-# iconfont-update
+# iconfont-update-cli
 ### 项目更新本地图标库管理插件
 #### 使用方式:
-npm install  iconfont-update -g
+npm install  iconfont-update-cli -g
 
 ```js
-iconfont init phoneNumber password  //初始化本地配置
+iconfont init  //初始化本地配置
 
 iconfont ls  //查看参与项目所用到的图标库
 
