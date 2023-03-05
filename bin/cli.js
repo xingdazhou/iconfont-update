@@ -23,7 +23,7 @@ program
     .alias("i")
     .description("初始化配置文件")
     .action(() => {
-        require("../directiveFun/init.js")();
+        require("../lib/init.js")();
     });
 
 // 查看参与项目图标库列表
@@ -32,7 +32,7 @@ program
     .alias("l")
     .description("查看正在参与项目所用到的图标库")
     .action(() => {
-        require("../directiveFun/showStoreList")();
+        require("../lib/ls")();
     });
 
 // 更新图标库
@@ -41,7 +41,7 @@ program
     .alias("u")
     .description("更新图标库")
     .action(() => {
-        require("../lib/index")();
+        require("../lib/update")();
     });
 
 // 预览本地图标库
@@ -50,7 +50,7 @@ program
     .alias("p")
     .description("查看图标库的预览页面")
     .action(() => {
-        require("../directiveFun/preview")();
+        require("../lib/preview")();
     });
 
 // 本地图标库与远程图标库对比
@@ -59,7 +59,7 @@ program
     .alias("c")
     .description("本地与远程对比预览")
     .action(() => {
-        require("../directiveFun/compare")();
+        require("../lib/compare")();
     });
 
 program.parse(process.argv);
