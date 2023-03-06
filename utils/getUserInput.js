@@ -1,10 +1,11 @@
 const inquirer = require("inquirer");
+const chalk = require("chalk");
 const readConfig = require("../utils/readConfig");
 let phoneNumber = "";
 let password = "";
 let updatePath = "";
 
-let updateId = ''
+let updateId = "";
 let previewPath = "";
 let comparePath = {};
 async function getInitInput() {
@@ -22,19 +23,22 @@ async function getInitInput() {
             message: "请输入密码：",
         },
     ]);
+    return {
+        phoneNumber: phoneNumber.input,
+        password: password.input,
+    };
+}
+async function getInitPathInput(item) {
     updatePath = await inquirer.prompt([
         {
             name: "input",
             type: "input",
-            message: "请输入本地图标库更新路径：",
-            default: "/public/static/newFont",
+            message: `请输入 ${chalk.blue(item.name)} 本地图标库更新路径：`,
+            default:
+                item.id == "3622752" ? "/public/static/newfont" : "/ui/font",
         },
     ]);
-    return {
-        phoneNumber: phoneNumber.input,
-        password: password.input,
-        updatePath: updatePath.input,
-    };
+    return updatePath.input;
 }
 async function getUpdateInput() {
     const list = JSON.parse(readConfig()).list;
@@ -95,6 +99,7 @@ async function getCompareInput() {
 }
 module.exports = {
     getInitInput,
+    getInitPathInput,
     getUpdateInput,
     getPreviewInput,
     getCompareInput,
