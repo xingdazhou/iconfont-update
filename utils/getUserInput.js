@@ -52,7 +52,7 @@ async function getUpdateInput() {
         {
             type: "checkbox",
             name: "checkbox",
-            message: "请选择下列图标库进行预览",
+            message: "请选择下列图标库进行更新",
             choices: checkBoxList,
         },
     ]);
@@ -70,7 +70,7 @@ async function getPreviewInput() {
         {
             type: "checkbox",
             name: "checkbox",
-            message: "请选择下列图标库进行更新",
+            message: "请选择下列图标库进行预览",
             choices: checkBoxList,
         },
     ]);
