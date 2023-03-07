@@ -1,23 +1,9 @@
 #!/usr/bin/env node
 const program = require("commander");
-
-// 对上面代码的解释   https://www.cnblogs.com/ZheOneAndOnly/p/15912495.html
-// 到项目文件路径下面执行 npx link 创建一个软连接
-// 查看说有软连接 npm ls --global --depth 0
-// 或者直接执行 node ./bin/cli.js init phone password
-
-// 修改iconfont init 为用户交互
-// https://blog.csdn.net/qq_34086980/article/details/113624914
-
-// The fs.promises API is experimental  装了最新包，但是node不是最高版本，单独运行对应js文件找到报错的是导入那个模块引起的
-
-// 配置iconfont -V指令显示
 program
   .version(`iconfont ${require('../package').version}`)
   .usage('<command> [options]')
 
-
-// 初始化用户信息
 program
     .command("init")
     .alias("i")
@@ -26,7 +12,6 @@ program
         require("../lib/init.js")();
     });
 
-// 查看参与项目图标库列表
 program
     .command("ls")
     .alias("l")
@@ -35,7 +20,6 @@ program
         require("../lib/ls")();
     });
 
-// 更新图标库
 program
     .command("update")
     .alias("u")
@@ -44,7 +28,6 @@ program
         require("../lib/update")();
     });
 
-// 预览本地图标库
 program
     .command("preview")
     .alias("p")
@@ -53,7 +36,6 @@ program
         require("../lib/preview")();
     });
 
-// 本地图标库与远程图标库对比
 program
     .command("compare")
     .alias("c")
